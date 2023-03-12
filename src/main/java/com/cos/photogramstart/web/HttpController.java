@@ -32,4 +32,5 @@ public class HttpController {
 	public String delete() {
 		return "delete 요청이 실행되었습니다.";
 	}
+	// get, post, put, delete는 모두 다른 요청으로 들어가게됨.
 }
