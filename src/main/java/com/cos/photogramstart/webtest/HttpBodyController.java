@@ -1,4 +1,4 @@
-package com.cos.photogramstart.web;
+package com.cos.photogramstart.webtest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

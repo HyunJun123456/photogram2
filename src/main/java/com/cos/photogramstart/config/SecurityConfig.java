@@ -11,6 +11,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		// 시큐리티가 인증되지 않은 쵸청을 낚아채서 login 페이지로 응답하게 해주는 녀석
 		// 주석 처리함으로써 적용되어 있던 기능들 비활성화
+		
+		http.csrf().disable(); // CSRF 토큰 검사를 비활성화 하겠다.
 		http.authorizeRequests()
 		.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**") // 요청이 들어오는 경로를 지정
 		.authenticated() // 해당 경로로 들어온 요청은 인증이 필요하다고 지정
