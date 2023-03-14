@@ -1,4 +1,4 @@
-package com.cos.photogramstart.domain;
+package com.cos.photogramstart.domain.user;
 
 import java.time.LocalDateTime;
 
@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+@Builder // Builder 패턴으로 데이터를 담을 수 있게 해주는 어노테이션
 @AllArgsConstructor // 모든 생성자를 자동을 만들어주는 어노테이션
 @NoArgsConstructor // 빈 생성자를 자동으로 만들어주는 어노테이션
 @Data // 자동으로 Getter, Setter, toString을 만들어주는 어노테이션
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class User { // DB에 데이터를 INSERT하기 위해서는 MODEL이 필요하다.
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id // Primary Key를 지정해주는 어노테이션
-	private Integer id; // 데이터가 들어갈 때 마다 번호를 매겨줄것임.
+	private int id; // 데이터가 들어갈 때 마다 번호를 매겨줄것임.
 	private String username; // 아이디
 	private String password; // 패스워드
 	private String name; // 별명
@@ -37,4 +38,7 @@ public class User { // DB에 데이터를 INSERT하기 위해서는 MODEL이 필
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+	
+
+	
 }
