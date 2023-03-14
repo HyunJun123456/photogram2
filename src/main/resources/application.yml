@@ -44,10 +44,10 @@ spring:
       enabled: true # 서버에 사진을 전송하는것을 허용한다.
       max-file-size: 2MB # 파일의 사이즈 제한
   # 스프링 시큐리티 설정
-  #security:
-    #user:
-      #name: test
-      #password: 1234   
+  security:
+    user:
+      name: test
+      password: 1234   
 # 파일이 저장될 커스텀 경로
 file:
   path: C:/workspace/springbootwork/upload/
