@@ -1,11 +1,17 @@
 package com.cos.photogramstart.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cos.photogramstart.web.dto.auth.SignupDto;
+
 @Controller
 public class AuthController {
+	private static Logger log = LoggerFactory.getLogger(AuthController.class);
+	
 	// 로그인 페이지로 이동
 	@GetMapping("/auth/signin")
 	public String signinForm() {
@@ -20,8 +26,8 @@ public class AuthController {
 	
 	// 회원가입 기능
 	@PostMapping("/auth/signup") // @GetMapping과 요청오는게 똑같아도 다르게 받아들임
-	public String signup() {
-		System.out.println("signup 실행됨");
+	public String signup(SignupDto signupDto) {
+		log.info(signupDto.toString());
 		return "/auth/signin"; // 회원가입이 완료되면 로그인페이지로 이동할 것이다.
 	}
 	
