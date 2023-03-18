@@ -22,7 +22,7 @@ public class User { // DB에 데이터를 INSERT하기 위해서는 MODEL이 필
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id // Primary Key를 지정해주는 어노테이션
 	private int id; // 데이터가 들어갈 때 마다 번호를 매겨줄것임.
-	@Column(unique = true) // username은 유일성을 보장받게 된다.
+	@Column(unique = true, length = 20) // username은 유일성을 보장받게 된다.
 	private String username; // 아이디
 	private String password; // 패스워드
 	private String name; // 별명
@@ -41,6 +41,7 @@ public class User { // DB에 데이터를 INSERT하기 위해서는 MODEL이 필
 		this.createDate = LocalDateTime.now();
 	}
 	
-
+// 서버단에서 제약조건을 확인하여 응답하는 것을 전처리
+// DB단에서 제약조건을 확인하여 응답하는 것을 후처리
 	
 }
