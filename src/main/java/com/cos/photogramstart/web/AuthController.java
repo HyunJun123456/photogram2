@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.auth.SignupDto;
 
@@ -40,7 +41,7 @@ public class AuthController {
 	
 	// 회원가입 기능
 	@PostMapping("/auth/signup") // @GetMapping과 요청오는게 똑같아도 다르게 받아들임
-	public @ResponseBody String signup(@Valid SignupDto signupDto,
+	public String signup(@Valid SignupDto signupDto,
 			BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
@@ -51,7 +52,7 @@ public class AuthController {
 				System.out.println(error.getDefaultMessage());
 				System.out.println("==============================");
 			}
-			return "오류발생";
+			throw new CustomValidationException("유효성검사 실패함", errorMap);
 		}else {
 			// log.info(signupDto.toString());
 			// User Object에 SignUpDto 데이터를 삽입하려고 한다.
