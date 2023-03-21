@@ -22,12 +22,15 @@ public class User { // DB에 데이터를 INSERT하기 위해서는 MODEL이 필
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id // Primary Key를 지정해주는 어노테이션
 	private int id; // 데이터가 들어갈 때 마다 번호를 매겨줄것임.
-	@Column(unique = true, length = 20) // username은 유일성을 보장받게 된다.
+	@Column(unique = true, length = 20, nullable = false) // username은 유일성을 보장받게 된다.
 	private String username; // 아이디
+	@Column(nullable = false)
 	private String password; // 패스워드
+	@Column(nullable = false)
 	private String name; // 별명
 	private String website; // 개인 웹사이트 주소
 	private String bio; // 자기소개
+	@Column(nullable = false)
 	private String email; // 이메일
 	private String phone; // 전화번호
 	private String gender; // 성별
