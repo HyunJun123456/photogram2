@@ -4,13 +4,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.user.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Service
 public class PrincipalDetailsService implements UserDetailsService{
-
+	
+	private final UserRepository userRepository;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println(username + "loadUserByUsername 실행됨");
-		return null;
+		User userEntity = userRepository.findByUsername(username);
+		if(userEntity == null) { // username을 찾지 못했다면
+			return null;
+		}else { // username을 찾았다면
+			return new PrincipalDetails(userEntity); // principalDetails를 session에 저장한다.
+		}
 	}
 	/*
 	 * 서버 내부의 시큐리티 설정파일(SecurityConfig)에 /auth/signin 이라는 주소가 
