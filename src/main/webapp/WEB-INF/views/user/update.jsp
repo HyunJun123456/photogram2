@@ -21,13 +21,18 @@
 			</div>
 			<!--프로필셋팅 아이디영역end-->
 
+			<!-- 
+				정상적으로 입력후 제출버튼을 누르면 회원수정로직이 작동하지 않고 화면이 깜빡이기만 한다.
+				왜냐하면 button 타입을 지정해주지 않으면 default값으로 submit타입이 되어 form태그를 실행시키는데,
+				form 태그에서 action 경로를 지정해주지 않았기 때문에 default 경로인 원래주소로 돌아온 것이다.
+			 -->
 			<!--프로필 수정-->
-			<form id="profileUpdate">
+			<form id="profileUpdate" onsubmit="update(${principal.user.id}, event)"> <!-- button의 옵션을 지우고 form에 위임 -->
 				<div class="content-item__02">
 					<div class="item__title">이름</div>
 					<div class="item__input">
 						<input type="text" name="name" placeholder="이름"
-							value="${principal.user.name }" />
+							value="${principal.user.name }" required="required"/>
 					</div>
 				</div>
 				<div class="content-item__03">
@@ -40,7 +45,7 @@
 				<div class="content-item__04">
 					<div class="item__title">패스워드</div>
 					<div class="item__input">
-						<input type="password" name="password" placeholder="패스워드"  />
+						<input type="password" name="password" placeholder="패스워드"  required="required"/>
 					</div>
 				</div>
 				<div class="content-item__05">
@@ -88,7 +93,7 @@
 				<div class="content-item__11">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<button type="button" onclick="update(${principal.user.id}, event)">제출</button>
+						<button>제출</button>
 					</div>
 				</div>
 				<!--제출버튼end-->

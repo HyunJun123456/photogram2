@@ -1,5 +1,6 @@
 // (1) 회원정보 수정
-function update(userId) {
+function update(userId, event) {
+	event.preventDefault(); // form 태그의 action경로를 비활성화 시킨다.
 	let data = $("#profileUpdate").serialize(); // 해당 태그가 가지고 있는 모든 input값을 찾아낸다.
 	console.log(data);	
 	
@@ -14,6 +15,13 @@ function update(userId) {
 		alert("회원정보가 성공적으로 수정되었습니다.");
 		location.href = `/user/${userId}`;
 	}).fail(error=>{ // 실패했을 시 응답하는 영역
-		console.log("update 실패", error);
+		// console.log("update 실패", error);
+		alert("회원정보 수정에 실패하였습니다. 원인 : " + 
+		JSON.stringify(error.responseJSON.data));
 	});
+	/*
+		done은 HTTPStatus 상태코드가 200번대(정상)일 때 실행되고
+		fail은 HTTPStatus 상태코드가 200번대가 아닐 때(에러발생) 실행된다.
+		따라서 우리가 응답을 해줄 때, HTTPStatus 상태코드도 함께 응답해주어야 컨트롤이 가능하다.
+	 */
 }
