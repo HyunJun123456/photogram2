@@ -11,6 +11,8 @@ function update(userId) {
 		dataType: "json" // 서버로부터 응답받고 싶은 데이터 타입
 	}).done(res=>{ // 성공했을 시 응답하는 영역
 		console.log("update 성공", res);
+		alert("회원정보가 성공적으로 수정되었습니다.");
+		location.href = `/user/${userId}`;
 	}).fail(error=>{ // 실패했을 시 응답하는 영역
 		console.log("update 실패", error);
 	});
