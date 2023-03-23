@@ -27,8 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.permitAll() // 모두 허용
 		.and() // 그리고
 		.formLogin() // 로그인(인증)이 필요한 요청이 들어오면
-		.loginPage("/auth/signin") // 로그인페이지 auth/signin으로 이동시키고
-		.defaultSuccessUrl("/") // 인증이 정상적으로 완료되면 / 로 이동한다.
+		.loginPage("/auth/signin") // 로그인페이지 auth/signin으로 이동시키고 (GET요청) //loginPage에서의 경로는 인증이 필요한 요청이 들어왔을 때 Get요청으로 페이지를 응답
+		.loginProcessingUrl("/auth/signin") // auth/signin 이라는 POST요청을 실행 //loginProcessingUrl는 스프링시큐리티가 Post 요청으로써 로그인프로세스를 진행 
+		.defaultSuccessUrl("/") // 인증이 정상적으로 완료되면 / 로 이동한다. 
 		;
 	}
 }
