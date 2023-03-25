@@ -67,4 +67,5 @@ public class PrincipalDetails implements UserDetails{
 		return true; // 응, 계정 활성화가 되어있어.
 	}
 
+	
 }
